@@ -1,0 +1,219 @@
+{
+    "nodes": [
+      {
+        "id": "A",
+        "last_name": "A",
+        "height": 30
+      },
+      {
+        "id": "B",
+        "last_name": "B",
+        "height": 30
+      },
+      {
+        "id": "C",
+        "last_name": "C",
+        "height": 30
+      },
+      {
+        "id": "D",
+        "last_name": "D",
+        "height": 30
+      },
+      {
+        "id": "E",
+        "last_name": "E",
+        "height": 30
+      },
+      {
+        "id": "F",
+        "last_name": "F",
+        "height": 30
+      },
+      {
+        "id": "G",
+        "last_name": "G",
+        "height": 30
+      },
+      {
+        "id": "Z",
+        "last_name": "Z",
+        "height": 30
+      },
+      {
+        "id": "X",
+        "last_name": "X",
+        "height": 30
+      }
+    ],
+    "edges": [
+      {
+        "from": "A",
+        "to": "B",
+        "distance": 16,
+        "normal": {
+          "stroke": {
+            "color": "#ffa000",
+            "thickness": "2",
+            "dash": "10 5",
+            "lineJoin": "round"
+          }
+        },
+        "hovered": {
+          "stroke": {
+            "color": "#ffa000",
+            "thickness": "4",
+            "dash": "10 5",
+            "lineJoin": "round"
+          }
+        },
+        "selected": {
+          "stroke": "4 #ffa000"
+        }
+      },
+      {
+        "from": "A",
+        "to": "C",
+        "distance": 6,
+        "normal": null,
+        "hovered": null,
+        "selected": null
+      },
+      {
+        "from": "A",
+        "to": "D",
+        "distance": 5,
+        "normal": null,
+        "hovered": null,
+        "selected": null
+      },
+      {
+        "from": "B",
+        "to": "G",
+        "distance": 6,
+        "normal": null,
+        "hovered": null,
+        "selected": null
+      },
+      {
+        "from": "B",
+        "to": "F",
+        "distance": 4,
+        "normal": {
+          "stroke": {
+            "color": "#ffa000",
+            "thickness": "2",
+            "dash": "10 5",
+            "lineJoin": "round"
+          }
+        },
+        "hovered": {
+          "stroke": {
+            "color": "#ffa000",
+            "thickness": "4",
+            "dash": "10 5",
+            "lineJoin": "round"
+          }
+        },
+        "selected": {
+          "stroke": "4 #ffa000"
+        }
+      },
+      {
+        "from": "B",
+        "to": "C",
+        "distance": 2,
+        "normal": null,
+        "hovered": null,
+        "selected": null
+      },
+      {
+        "from": "C",
+        "to": "F",
+        "distance": 12,
+        "normal": null,
+        "hovered": null,
+        "selected": null
+      },
+      {
+        "from": "C",
+        "to": "E",
+        "distance": 10,
+        "normal": null,
+        "hovered": null,
+        "selected": null
+      },
+      {
+        "from": "C",
+        "to": "D",
+        "distance": 4,
+        "normal": null,
+        "hovered": null,
+        "selected": null
+      },
+      {
+        "from": "D",
+        "to": "E",
+        "distance": 15,
+        "normal": null,
+        "hovered": null,
+        "selected": null
+      },
+      {
+        "from": "E",
+        "to": "F",
+        "distance": 3,
+        "normal": null,
+        "hovered": null,
+        "selected": null
+      },
+      {
+        "from": "E",
+        "to": "Z",
+        "distance": 5,
+        "normal": null,
+        "hovered": null,
+        "selected": null
+      },
+      {
+        "from": "F",
+        "to": "G",
+        "distance": 8,
+        "normal": null,
+        "hovered": null,
+        "selected": null
+      },
+      {
+        "from": "F",
+        "to": "Z",
+        "distance": 16,
+        "normal": {
+          "stroke": {
+            "color": "#ffa000",
+            "thickness": "2",
+            "dash": "10 5",
+            "lineJoin": "round"
+          }
+        },
+        "hovered": {
+          "stroke": {
+            "color": "#ffa000",
+            "thickness": "4",
+            "dash": "10 5",
+            "lineJoin": "round"
+          }
+        },
+        "selected": {
+          "stroke": "4 #ffa000"
+        }
+      },
+      {
+        "from": "G",
+        "to": "Z",
+        "distance": 7,
+        "normal": null,
+        "hovered": null,
+        "selected": null
+      }
+    ]
+}

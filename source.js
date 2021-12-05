@@ -1,61 +1,67 @@
-var DATA = {
-  nodes: [
-      {id: "A",last_name: "A",height: 30},
-      {id: "B",last_name: "B",height: 30},
-      {id: "C",last_name: "C",height: 30},
-      {id: "D",last_name: "D",height: 30},
-      {id: "E",last_name: "E",height: 30},
-      {id: "F",last_name: "F",height: 30},
-      {id: "G",last_name: "G",height: 30},
-      {id: "Z",last_name: "Z",height: 30},
-  ],
-  edges: [
-      {from: "A",   to: "B", distance:16,normal: normalYes(true),hovered:hoverYes(true),selected:selectedYes(true)},
-      {from: "A",   to: "C", distance:6,normal: normalYes(false),hovered:hoverYes(false),selected:selectedYes(false)},
-      {from: "A",   to: "D", distance:5,normal: normalYes(false),hovered:hoverYes(false),selected:selectedYes(false)},
-      {from: "B",   to: "G", distance:6,normal: normalYes(false),hovered:hoverYes(false),selected:selectedYes(false)},
-      {from: "B",   to: "F", distance:4,normal: normalYes(true),hovered:hoverYes(true),selected:selectedYes(true)},
-      {from: "B",   to: "C", distance:2,normal: normalYes(false),hovered:hoverYes(false),selected:selectedYes(false)},
-      {from: "C",   to: "F", distance:12,normal: normalYes(false),hovered:hoverYes(false),selected:selectedYes(false)},
-      {from: "C",   to: "E", distance:10,normal: normalYes(false),hovered:hoverYes(false),selected:selectedYes(false)},
-      {from: "C",   to: "D", distance:4,normal: normalYes(false),hovered:hoverYes(false),selected:selectedYes(false)},
-      {from: "D",   to: "E", distance:15,normal: normalYes(false),hovered:hoverYes(false),selected:selectedYes(false)},
-      {from: "E",   to: "F", distance:3,normal: normalYes(false),hovered:hoverYes(false),selected:selectedYes(false)},
-      {from: "E",   to: "Z", distance:5,normal: normalYes(false),hovered:hoverYes(false),selected:selectedYes(false)},
-      {from: "F",   to: "G", distance:8,normal: normalYes(false),hovered:hoverYes(false),selected:selectedYes(false)},
-      {from: "F",   to: "Z", distance:16,normal: normalYes(true),hovered:hoverYes(true),selected:selectedYes(true)},
-      {from: "G",   to: "Z", distance:7,normal: normalYes(false),hovered:hoverYes(false),selected:selectedYes(false)}
-  ]
+  $(document).ready(function() {
+
+  });
+
+  window.onload = function() {
+
   };
 
-  $(document).ready(function() {
-    listaTblNodos(DATA.nodes);
-    loadEnlaces(DATA.edges);
-  });
+// add a new data row
+function addNodo() {
+    let id = JSON_DATA.nodes.length;
+    var newValue = {id: "H",last_name: "H",height: 30};
+    JSON_DATA.nodes.push(newValue);
+    addArco();
+  }
+
+  function addArco() {
+    var newValue = {from: "G",   to: "H", distance:16,normal: normalYes(true),hovered:hoverYes(true),selected:selectedYes(true)};
+    JSON_DATA.edges.push(newValue);
+  }
 
 
-anychart.onDocumentReady(function () {
-    // create DATA
-    // create a chart and set the DATA
-    var chart = anychart.graph(DATA);
-    //
-    var zoomController = anychart.ui.zoom();
-    zoomController.target(chart);
-    zoomController.render();
+  anychart.onDocumentReady(function () {
+    // To work with the data adapter you need to reference the data adapter script file from AnyChart CDN
+    // https://cdn.anychart.com/releases/8.11.0/js/anychart-data-adapter.min.js
 
-    chart.nodes().labels().enabled(true);
-// configure tooltips of edges
-    chart.edges().tooltip().format("{%distance} Km");
-    // configure labels of nodes
-    chart.nodes().labels().format("{%id}");
-    chart.nodes().labels().fontSize(12);
-    chart.nodes().labels().fontWeight(600);
-    // set the container id
-    chart.container("container");
+    // Load JSON data and create a chart by JSON data.
+    anychart.data.loadJsonFile("data.json", function (data) {
+// create a chart and set loaded data
+        console.log(data);
+                // create a chart and set loaded data
+        var chart = anychart.graph(data);
+        var zoomController = anychart.ui.zoom();
+        zoomController.target(chart);
+        zoomController.render();
 
-    // initiate drawing the chart
-    chart.draw();
-  });
+        chart.nodes().labels().enabled(true);
+    // configure tooltips of edges
+        chart.edges().tooltip().format("{%distance} Km");
+        // configure labels of nodes
+        chart.nodes().labels().format("{%id}");
+        chart.nodes().labels().fontSize(12);
+        chart.nodes().labels().fontWeight(600);
+        // set the container id
+        chart.container("container");
+
+        // initiate drawing the chart
+        chart.draw();
+    });
+});
+
+/*
+    var myVar = setInterval(
+        // data streaming itself
+        function() {
+            listaTblNodos(JSON_DATA.nodes);
+            loadEnlaces(JSON_DATA.edges);
+            chart.data(this.JSON_DATA);
+            console.log(JSON_DATA);
+            console.log("-\n");
+        }, 1000            // interval
+      );
+
+*/
 
   
 
@@ -83,22 +89,12 @@ anychart.onDocumentReady(function () {
     return params ? {stroke: "4 #ffa000"}: null;
   }
 
-// function, if listener triggers
-function addPoint() {
-  // first index for new point
-  newIndex = 22;
-  // append DATA
-  this.DATA.push({id: newIndex,last_name: "XXXX",height: 30});
-  listaTblNodos(DATA.nodes);
-  loadEnlaces(DATA.edges);
-};
 
-////////////// CREADORES HTML ///////////////
-
-function loadEnlaces(arcos) {
+  ////////////// CREADORES HTML ///////////////
+function loadEnlaces(ENLACES) {
   let template = "";
   let i =0;
-  arcos.forEach(
+  ENLACES.forEach(
     (arco)=>
     {
       i++;
@@ -113,10 +109,10 @@ function loadEnlaces(arcos) {
 $("#tblArcos").html(template);
 }
 
-function listaTblNodos(nodos) {
+function listaTblNodos(NODOS) {
   let template = "";
   let i = 0;
-  nodos.forEach(
+  NODOS.forEach(
       (nodo)=>
       {
         i++;
@@ -128,5 +124,4 @@ function listaTblNodos(nodos) {
       }
   );
   $("#tblNodos").html(template);
-  console.log(nodos);
 }
