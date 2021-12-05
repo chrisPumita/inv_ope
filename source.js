@@ -1,69 +1,78 @@
-  $(document).ready(function() {
-
-  });
+var DATA = {
+  "nodes": [],
+  "edges": []
+};
 
   window.onload = function() {
-
+    cargaGrafico();
   };
 
 // add a new data row
 function addNodo() {
-    let id = JSON_DATA.nodes.length;
-    var newValue = {id: "H",last_name: "H",height: 30};
-    JSON_DATA.nodes.push(newValue);
-    addArco();
+  let objInput = $("#nombreNodo").val();
+  if (objInput.length>0) 
+  {
+    let id = DATA.nodes.length;
+    let nombre = objInput;
+    var newValue = {id: id+1,last_name: nombre,height: 30};
+    DATA.nodes.push(newValue);
+    cargaGrafico();
+    updateListas();
   }
+  else{
+    alert("No debe estar vacio el el campo de nodo");
+  }
+}
+
+function updateListas() { 
+  let template ='';
+  DATA.nodes.forEach(
+      obj => {
+          template += `<option value="${obj.id}">${obj.last_name}</option>`;
+      }
+  );
+  //Selecciono el elemento donde voy a pintar el template
+  $('#SelectFrom').html(template);
+  $('#SelectTo').html(template);
+ }
 
   function addArco() {
-    var newValue = {from: "G",   to: "H", distance:16,normal: normalYes(true),hovered:hoverYes(true),selected:selectedYes(true)};
-    JSON_DATA.edges.push(newValue);
+    let from = $('#SelectFrom').val();
+    let to = $('#SelectTo').val();
+    let distance= $("#distancia").val();
+    var newValue = {from:from, to:to, distance:distance, normal:normalYes(false), hovered:hoverYes(false), selected:selectedYes(false)};
+    DATA.edges.push(newValue);
+    cargaGrafico();
   }
 
+  function cargaGrafico() { 
+      // create a chart and set loaded data
+      $("#container").html("");
+              // create a chart and set loaded data
+      var chart = anychart.graph(DATA);
+      chart.title("Ruta mas corta");
+      var zoomController = anychart.ui.zoom();
+      zoomController.target(chart);
+      zoomController.render();
 
-  anychart.onDocumentReady(function () {
-    // To work with the data adapter you need to reference the data adapter script file from AnyChart CDN
-    // https://cdn.anychart.com/releases/8.11.0/js/anychart-data-adapter.min.js
+      chart.nodes().labels().enabled(true);
+  // configure tooltips of edges
+      chart.edges().tooltip().format("{%distance} Km");
+      // configure labels of nodes
+      chart.nodes().labels().format("{%id}");
+      chart.nodes().labels().fontSize(12);
+      chart.nodes().labels().fontWeight(600);
+      // set the container id
+      chart.container("container");
 
-    // Load JSON data and create a chart by JSON data.
-    anychart.data.loadJsonFile("data.json", function (data) {
-// create a chart and set loaded data
-        console.log(data);
-                // create a chart and set loaded data
-        var chart = anychart.graph(data);
-        var zoomController = anychart.ui.zoom();
-        zoomController.target(chart);
-        zoomController.render();
+      // initiate drawing the chart
+      chart.draw();
 
-        chart.nodes().labels().enabled(true);
-    // configure tooltips of edges
-        chart.edges().tooltip().format("{%distance} Km");
-        // configure labels of nodes
-        chart.nodes().labels().format("{%id}");
-        chart.nodes().labels().fontSize(12);
-        chart.nodes().labels().fontWeight(600);
-        // set the container id
-        chart.container("container");
-
-        // initiate drawing the chart
-        chart.draw();
-    });
-});
-
-/*
-    var myVar = setInterval(
-        // data streaming itself
-        function() {
-            listaTblNodos(JSON_DATA.nodes);
-            loadEnlaces(JSON_DATA.edges);
-            chart.data(this.JSON_DATA);
-            console.log(JSON_DATA);
-            console.log("-\n");
-        }, 1000            // interval
-      );
-
-*/
-
-  
+      //Build Tables
+      console.log(DATA);
+      loadEnlaces(DATA.edges);
+      listaTblNodos(DATA.nodes);
+   }
 
   function normalYes(params) {
     return params ? {stroke:  
@@ -92,36 +101,79 @@ function addNodo() {
 
   ////////////// CREADORES HTML ///////////////
 function loadEnlaces(ENLACES) {
-  let template = "";
-  let i =0;
-  ENLACES.forEach(
-    (arco)=>
-    {
-      i++;
-        template += `<tr>
-        <th scope="row">${i}</th>
-        <td>${arco.from}</td>
-        <td>${arco.to}</td>
-        <td>${arco.distance} Km.</td>
-      </tr>`;
-    }
-);
-$("#tblArcos").html(template);
+  let template =`<table class="table">
+                  <thead>
+                    <tr>
+                    <th scope="col"></th>
+                      <th scope="col">DE</th>
+                      <th scope="col">A</th>
+                      <th scope="col">DISTANCIA</th>
+                    </tr>
+                  </thead>
+                  <tbody>`;
+  if (ENLACES.length>0) {
+    ENLACES.forEach(
+      (arco)=>
+      {
+          template += `<tr>
+          <td><i class="fa fa-share-alt text-success" aria-hidden="true"></i></td>
+          <td>${arco.from}</td>
+          <td>${arco.to}</td>
+          <td>${arco.distance} Km.</td>
+        </tr>`;
+      }
+  );
+  template += `</tbody>
+  </table>`;
+  }
+  else{
+    template = `
+    <div class="alert alert-warning d-flex align-items-center" role="alert">
+      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+      <div>
+        Aun no se han unido Nodos, cree los archos de nodos para mostrarlas aqui
+      </div>
+    </div>
+    `;
+  }
+  $("#tblArcos").html(template);
 }
 
 function listaTblNodos(NODOS) {
-  let template = "";
+  let template =`<table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">ID</th>
+                      <th scope="col">Nodo</th>
+                    </tr>
+                  </thead>
+                  <tbody>`;
   let i = 0;
-  NODOS.forEach(
+  if(NODOS.length>0){
+    NODOS.forEach(
       (nodo)=>
       {
-        i++;
           template += `<tr>
-          <th scope="row">${i}</th>
+          <th scope="row"><i class="fa fa-circle text-info" aria-hidden="true"></i></th>
           <td>${nodo.id}</td>
           <td>${nodo.last_name}</td>
         </tr>`;
       }
   );
+  template += `</tbody>
+            </table>`;
+  }
+  else{
+    template = `
+    <div class="alert alert-warning d-flex align-items-center" role="alert">
+      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+      <div>
+        Aun no tenemos datos para procesar. Por favor ingrese Nodos y posteriormente arcos 
+      </div>
+    </div>
+    `;
+
+  }
   $("#tblNodos").html(template);
 }
