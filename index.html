@@ -1,164 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!-- AnyChart CSS -->
-    <!-- Include the data adapter -->
-    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js" type="text/javascript"></script>
-    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-data-adapter.min.js"></script>
-    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-core.min.js"></script>
-    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-graph.min.js"></script>
-    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-ui.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.anychart.com/releases/8.11.0/css/anychart-ui.min.css?hcode=a0c21fc77e1449cc86299c5faa067dc4"/> 
-    <link rel="stylesheet" type="text/css" href="https://cdn.anychart.com/releases/8.11.0/fonts/css/anychart-font.min.css"/>
-    <link rel="stylesheet" href="./style.css">
-
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-        <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-        </symbol>
-        <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
-        </symbol>
-        <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-        </symbol>
-      </svg>
-</head>
-<body>
-    <header>
-        <div class="container">
-            <h1>Universidad Nacional Autónoma de México</h1>
-            <h2>Facultad de Estudios Superiores Cuautitlán</h2>
-            <h3>Informática</h3>
-            <a href="#">Investigacion de Operaciones</a>
-            <h4>Integrantes:</h4>
-            <ul>
-                <ol>Jennifer Morales Rosas</ol>
-                <ol>Pioquinto Hernandez Christian René</ol>
-            </ul>
-        </div>
-
-
-
-      </header>
-      <section class="main bg-gray">
-        <div class="container py-5">
-            <h1>Ingreso de Datos:</h1>
-            <h3>Nodos</h3>
-            <div class="input-group mb-3">
-                <span class="input-group-text"><i class="fa fa-plus  text-success" aria-hidden="true"></i> Nodo</span>
-                <span class="input-group-text">Nombre</span>
-                <input type="text" class="form-control" id="nombreNodo" placeholder="Escriba nombre del Nodo" aria-label="Recipient's username" autofocus  aria-describedby="button-addon2">
-                <button class="btn btn-success" type="button" id="button-addon2" onclick="addNodo()">Agregar</button>
-              </div>
-            <hr>
-            <div id="containerArcos">
-                <h3>Unir Nodos</h3>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <!-- AnyChart CSS -->
+        <!-- Include the data adapter -->
+        <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js" type="text/javascript"></script>
+        <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-data-adapter.min.js"></script>
+        <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-core.min.js"></script>
+        <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-graph.min.js"></script>
+        <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-ui.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.anychart.com/releases/8.11.0/css/anychart-ui.min.css?hcode=a0c21fc77e1449cc86299c5faa067dc4"/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.anychart.com/releases/8.11.0/fonts/css/anychart-font.min.css"/>
+        <link rel="stylesheet" href="./style.css">
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </symbol>
+            <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </symbol>
+            <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </symbol>
+        </svg>
+    </head>
+    <body>
+        <header>
+            <div class="container">
                 <div class="row">
-                    <div class="col">
-                        <div class="mb-3">
-                            <label for="SelectFrom" class="form-label">De:</label>
-                            <select class="form-select" aria-label="Default select example" id="SelectFrom">
-                              </select>
-                          </div>
+                    <div class="col-12 col-sm-4">
+                        <img src="./escudo.jpg" alt="" width="200">
                     </div>
-                    <div class="col">
-                        <div class="mb-3">
-                            <label for="SelectTo" class="form-label">A:</label>
-                            <select class="form-select" aria-label="Default select example" id="SelectTo">
-
-                              </select>
-                        </div>
+                    <div class="col-12 col-sm-8">
+                        <h1>Universidad Nacional Autónoma de México</h1>
+                        <h2>Facultad de Estudios Superiores Cuautitlán</h2>
+                        <h3>Informática</h3>
+                        <a href="#">Investigacion de Operaciones</a>
+                        <h4>Integrantes:</h4>
+                        <ul>
+                            <ol>Jennifer Morales Rosas</ol>
+                            <ol>Pioquinto Hernandez Christian René</ol>
+                        </ul>
                     </div>
-                    <div class="col">
-                        <div class="mb-3">
-                            <label for="distancia" class="form-label">Distancia:</label>
-                            <input type="number" class="form-control" id="distancia" value="1" min="1">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <button class="btn btn-success" type="button" id="button-addon2" onclick="addArco()"><i class="fa fa-compress" aria-hidden="true"></i> Unir</button>
                 </div>
             </div>
-        </div>
-        <a class="arrow-wrap" href="#content">
-        <span class="arrow"></span>
-        <!--<span class="hint">scroll</span>-->
-        </a>
-        <div class="container">
-            <div class="row">
-                <div class="col-4">
-                    <div class="row">
-                        <h4>Lista de Nodos</h4>
-                        <div id="tblNodos">
-                            <table class="table">
-                                <thead>
-                                  <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Nodo</th>
-                                  </tr>
-                                </thead>
-                                <tbody id="tblNodos">
-                                </tbody>
-                              </table>
+        </header>
+        <section class="main bg-gray">
+            <a class="arrow-wrap" href="#content">
+                <span class="arrow"></span>
+                <!--<span class="hint">scroll</span>-->
+            </a>
+            <div class="container py-3">
+                <div class="row">
+                    <h4>Registro Nodos</h4>
+                    <div class="col-12 col-sm-12">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text"><i class="fa fa-plus  text-success" aria-hidden="true"></i> Nuevo Nodo: </span>
+                            <span class="input-group-text">Nombre</span>
+                            <input type="text" class="form-control" id="nombreNodo" placeholder="Escriba nombre del Nodo" aria-label="Recipient's username" autofocus  aria-describedby="button-addon2">
+                            <button class="btn btn-success" type="button" id="button-addon2" onclick="addNodo()">Agregar</button>
                         </div>
-
                     </div>
-                    <div class="row">
-                        <h4>Lista de Conexiones</h4>
-                        <div id="tblArcos">
-                            <table class="table">
-                                <thead>
-                                  <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">DE</th>
-                                    <th scope="col">A</th>
-                                    <th scope="col">DISTANCIA</th>
-                                  </tr>
-                                </thead>
-                                <tbody id="tblArcos">
-                                </tbody>
-                              </table>
+                    <hr>
+                    <div id="containerArcos">
+                        <h4>Unir Nodos</h4>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="SelectFrom" class="form-label">De:</label>
+                                    <select class="form-select" aria-label="Default select example" id="SelectFrom">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="SelectTo" class="form-label">A:</label>
+                                    <select class="form-select" aria-label="Default select example" id="SelectTo">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label for="distancia" class="form-label">Distancia:</label>
+                                    <input type="number" class="form-control" id="distancia" value="1" min="1">
+                                </div>
+                            </div>
+                            <div class="col-auto d-md-flex d-lg-flex justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center">
+                                <button class="btn btn-success" type="button" id="button-addon2" onclick="addArco()"><i class="fa fa-compress" aria-hidden="true"></i> Unir</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-8">
-                    <div class="content" id="content">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12" style="height: 80vh;">
-                                    <div id="container"></div>
+            </div>
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col-12 col-sm-4">
+                        <div class="row">
+                            <h4>Lista de Nodos</h4>
+                            <div id="tblNodos">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Nodo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tblNodos">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h4>Lista de Conexiones</h4>
+                            <div id="tblArcos">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">DE</th>
+                                            <th scope="col">A</th>
+                                            <th scope="col">DISTANCIA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tblArcos">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-8">
+                        <div class="content" id="content">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col" style="height: 80vh;">
+                                        <div id="container"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-
-      </section>
-<footer>
-    <div class="container bg-ligth py-5">
-        <div class="row">
-            <div class="text-center text-secondary">
-                Derechos Reservados
+        </section>
+        <section class="">
+            <div class="container py-3">
+                <div class="row">
+                    <h4>Registro Nodos</h4>
+                    <div class="col-12 col-sm-8">
+                        <div class="alert alert-success d-flex align-items-center" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                            <div>
+                              Elija el nodo de INICIO y de clic en procesar
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-6 col-sm-2">
+                        <h5>Nodo Incial:</h5>
+                        <select class="form-select" aria-label="Default select example" id="inicialNode">
+                        </select>
+                    </div>
+                    <div class="col-6 col-sm-2 text-center">
+                        <h5>Definir Ruta</h5>
+                        <button class="btn btn-primary" type="button" id="button-addon2" onclick="procesar()">
+                            <i class="fa fa-spinner" aria-hidden="true"></i> Procesar
+                        </button>
+                       
+                    </div>
+                    <hr>
+                    <div class="container py-5">
+                        <div class="row">
+                            <div class="col-12 col-sm-4">
+                                <h6>Informacion del procesamiento</h6>
+                                <div class="mb-3">
+                                    <label for="textAreaInfo" class="form-label">Example textarea</label>
+                                    <textarea class="form-control" id="textAreaInfo" rows="10"></textarea>
+                                  </div>
+                            </div>
+                            <div class="col-12 col-sm-8">
+                                <div class="content" id="content">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col" style="height: 80vh;">
+                                                <div id="containerResult"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-
-</footer>
-</body>
+        </section>
+        <footer>
+            <div class="container bg-ligth py-5">
+                <div class="row">
+                    <div class="text-center text-secondary">
+                        Derechos Reservados
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
