@@ -4,7 +4,7 @@ var DATA = {
 };
 
 window.onload = function () {
-    cargaGrafico();
+    cargaGrafico(DATA);
 };
 
 // add a new data row
@@ -20,12 +20,13 @@ function addNodo() {
         };
         DATA.nodes.push(newValue);
         console.log(DATA);
-        cargaGrafico();
+        cargaGrafico(DATA);
         updateListas();
     } else {
         alert("No debe estar vacio el el campo de nodo");
     }
 }
+
 
 function updateListas() {
     let template = '';
@@ -60,14 +61,14 @@ function addArco() {
         selected: selectedYes(false)
     };
     DATA.edges.push(newValue);
-    cargaGrafico();
+    cargaGrafico(DATA);
 }
 
-function cargaGrafico() {
+function cargaGrafico(INFO_DATA) {
     // create a chart and set loaded data
     $("#container").html("");
     // create a chart and set loaded data
-    var chart = anychart.graph(DATA);
+    var chart = anychart.graph(INFO_DATA);
     chart.title("Ruta mas corta");
     var zoomController = anychart.ui.zoom();
     zoomController.target(chart);
