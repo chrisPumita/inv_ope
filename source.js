@@ -3,14 +3,6 @@ var DATA = {
     "edges": []
 };
 
-var C = {
-    "nodes": []
-};
-
-var C0 = {
-    "nodes": []
-};
-
 window.onload = function () {
     cargaGrafico();
 };
@@ -57,8 +49,9 @@ function addArco() {
     let nameto = $('#SelectTo option:selected').text();
 
     var newValue = {
-        from: from,
-        to: to,
+        count_id: DATA.edges.length +1,
+        from: parseInt(from),
+        to: parseInt(to),
         name_from: namefrom,
         name_to: nameto,
         distance: distance,
@@ -252,41 +245,7 @@ function listaTblNodos(NODOS) {
 
 /*PROICESAMIENTO DE LOS NODOS*/
 
-function procesar() {
-    cargaGraficoFinal(tmpData);
-    $("#textAreaInfo").val("");
-    C0 = tmpData.nodes;
-    //definimos el nodo inicial
-    let idNodoInicial = 1;
-    console.log(tmpData);
-    //let idNodoInicia = $("#inicialNode").val();
-    let NodoInicia = C0.find(x=>x.id === idNodoInicial);
-    console.log(NodoInicia);
 
-    //Buscar todas las conexiones, donde nodo inicia es from de otros nodo
-    //definir nodo antecesor () si 0 entoncers es iunicial
-
-    //Buscar todas las conexiones  que tiene el nodo tanto en I
-    //Busco antecesor
-    let tmpConexiones = tmpData.edges.find(x=x.to);
-
-    if (tmpConexiones.length>0) {
-
-    }
-
-    tmpData.edges.forEach(
-        (enlace)=>{
-            if (1) {
-
-            }
-            tmpNodos.push()
-        });
-
-    for (let i = 0; i < 5; i++) {
-        printResults(C, C0, i);
-
-    }
-}
 
 function printResults(C, C0, it) {
     console.log(C);
@@ -315,181 +274,4 @@ function printResults(C, C0, it) {
     }
     template += "}";
     $("#textAreaInfo").val(template);
-}
-
-
-var tmpData = {
-    "nodes": [
-        {
-            "id": 1,
-            "last_name": "1",
-            "height": 30
-        },
-        {
-            "id": 2,
-            "last_name": "2",
-            "height": 30
-        },
-        {
-            "id": 3,
-            "last_name": "3",
-            "height": 30
-        },
-        {
-            "id": 4,
-            "last_name": "4",
-            "height": 30
-        },
-        {
-            "id": 5,
-            "last_name": "5",
-            "height": 30
-        },
-        {
-            "id": 6,
-            "last_name": "6",
-            "height": 30
-        },
-        {
-            "id": 7,
-            "last_name": "7",
-            "height": 30
-        },
-        {
-            "id": 8,
-            "last_name": "8",
-            "height": 30
-        },
-        {
-            "id": 9,
-            "last_name": "9",
-            "height": 30
-        },
-        {
-            "id": 10,
-            "last_name": "10",
-            "height": 30
-        }
-    ],
-    "edges": [
-        {
-            "from": "1",
-            "to": "2",
-            "name_from": "1",
-            "name_to": "2",
-            "distance": "3"
-        },
-        {
-            "from": "1",
-            "to": "3",
-            "name_from": "1",
-            "name_to": "3",
-            "distance": "6"
-        },
-        {
-            "from": "1",
-            "to": "4",
-            "name_from": "1",
-            "name_to": "4",
-            "distance": "1"
-        },
-        {
-            "from": "2",
-            "to": "6",
-            "name_from": "2",
-            "name_to": "6",
-            "distance": "7"
-        },
-        {
-            "from": "2",
-            "to": "5",
-            "name_from": "2",
-            "name_to": "5",
-            "distance": "3"
-        },
-        {
-            "from": "3",
-            "to": "5",
-            "name_from": "3",
-            "name_to": "5",
-            "distance": "8"
-        },
-        {
-            "from": "3",
-            "to": "7",
-            "name_from": "3",
-            "name_to": "7",
-            "distance": "2"
-        },
-        {
-            "from": "4",
-            "to": "7",
-            "name_from": "4",
-            "name_to": "7",
-            "distance": "5"
-        },
-        {
-            "from": "6",
-            "to": "10",
-            "name_from": "6",
-            "name_to": "10",
-            "distance": "20"
-        },
-        {
-            "from": "6",
-            "to": "5",
-            "name_from": "6",
-            "name_to": "5",
-            "distance": "6"
-        },
-        {
-            "from": "5",
-            "to": "8",
-            "name_from": "5",
-            "name_to": "8",
-            "distance": "9"
-        },
-        {
-            "from": "5",
-            "to": "9",
-            "name_from": "5",
-            "name_to": "9",
-            "distance": "3"
-        },
-        {
-            "from": "5",
-            "to": "7",
-            "name_from": "5",
-            "name_to": "7",
-            "distance": "1"
-        },
-        {
-            "from": "7",
-            "to": "9",
-            "name_from": "7",
-            "name_to": "9",
-            "distance": "4"
-        },
-        {
-            "from": "9",
-            "to": "8",
-            "name_from": "9",
-            "name_to": "8",
-            "distance": "7"
-        },
-        {
-            "from": "8",
-            "to": "10",
-            "name_from": "8",
-            "name_to": "10",
-            "distance": "11"
-        },
-        {
-            "from": "9",
-            "to": "10",
-            "name_from": "9",
-            "name_to": "10",
-            "distance": "13"
-        }
-    ]
 }
