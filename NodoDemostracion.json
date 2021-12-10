@@ -1,0 +1,232 @@
+{
+  "nodes": [
+    {
+      "id": 1,
+      "last_name": "A",
+      "height": 30
+    },
+    {
+      "id": 2,
+      "last_name": "B",
+      "height": 30
+    },
+    {
+      "id": 3,
+      "last_name": "C",
+      "height": 30
+    },
+    {
+      "id": 4,
+      "last_name": "D",
+      "height": 30
+    },
+    {
+      "id": 5,
+      "last_name": "E",
+      "height": 30
+    },
+    {
+      "id": 6,
+      "last_name": "F",
+      "height": 30
+    }
+  ],
+  "edges": [
+    {
+      "count_id": 1,
+      "from": null,
+      "to": 1,
+      "name_from": null,
+      "name_to": "A",
+      "distance": 0,
+      "valor_forme_padre": 0,
+      "valor_tmp": 0,
+      "valor_firme": 0,
+      "es_ruta": true,
+      "normal": null,
+      "hovered": null,
+      "selected": null
+    },
+    {
+      "count_id": 2,
+      "from": 1,
+      "to": 2,
+      "name_from": "A",
+      "name_to": "B",
+      "distance": "3",
+      "valor_firme_padre": 0,
+      "valor_tmp": 3,
+      "valor_firme": 3,
+      "es_ruta": false,
+      "normal": null,
+      "hovered": null,
+      "selected": null
+    },
+    {
+      "count_id": 3,
+      "from": 2,
+      "to": 4,
+      "name_from": "B",
+      "name_to": "D",
+      "distance": "4",
+      "valor_firme_padre": 3,
+      "valor_tmp": 7,
+      "valor_firme": 7,
+      "es_ruta": false,
+      "normal": null,
+      "hovered": null,
+      "selected": null
+    },
+    {
+      "count_id": 4,
+      "from": 1,
+      "to": 3,
+      "name_from": "A",
+      "name_to": "C",
+      "distance": "2",
+      "valor_firme_padre": 0,
+      "valor_tmp": 2,
+      "valor_firme": 2,
+      "es_ruta": false,
+      "normal": {
+        "stroke": {
+          "color": "#ffa000",
+          "thickness": "2",
+          "dash": "10 5",
+          "lineJoin": "round"
+        }
+      },
+      "hovered": null,
+      "selected": {
+        "stroke": "4 #ffa000"
+      },
+      "hover": {
+        "stroke": {
+          "color": "#ffa000",
+          "thickness": "4",
+          "dash": "10 5",
+          "lineJoin": "round"
+        }
+      }
+    },
+    {
+      "count_id": 5,
+      "from": 3,
+      "to": 5,
+      "name_from": "C",
+      "name_to": "E",
+      "distance": "4",
+      "valor_firme_padre": 2,
+      "valor_tmp": 6,
+      "valor_firme": 6,
+      "es_ruta": false,
+      "normal": null,
+      "hovered": null,
+      "selected": null,
+      "hover": {
+        "stroke": {
+          "color": "#ffa000",
+          "thickness": "4",
+          "dash": "10 5",
+          "lineJoin": "round"
+        }
+      }
+    },
+    {
+      "count_id": 6,
+      "from": 5,
+      "to": 6,
+      "name_from": "E",
+      "name_to": "F",
+      "distance": "3",
+      "valor_firme_padre": 6,
+      "valor_tmp": 9,
+      "valor_firme": 9,
+      "es_ruta": true,
+      "normal": {
+        "stroke": {
+          "color": "#ffa000",
+          "thickness": "2",
+          "dash": "10 5",
+          "lineJoin": "round"
+        }
+      },
+      "hovered": null,
+      "selected": {
+        "stroke": "4 #ffa000"
+      },
+      "hover": {
+        "stroke": {
+          "color": "#ffa000",
+          "thickness": "4",
+          "dash": "10 5",
+          "lineJoin": "round"
+        }
+      }
+    },
+    {
+      "count_id": 7,
+      "from": 3,
+      "to": 4,
+      "name_from": "C",
+      "name_to": "D",
+      "distance": "1",
+      "valor_firme_padre": 2,
+      "valor_tmp": 3,
+      "valor_firme": 3,
+      "es_ruta": false,
+      "normal": {
+        "stroke": {
+          "color": "#ffa000",
+          "thickness": "2",
+          "dash": "10 5",
+          "lineJoin": "round"
+        }
+      },
+      "hovered": null,
+      "selected": {
+        "stroke": "4 #ffa000"
+      },
+      "hover": {
+        "stroke": {
+          "color": "#ffa000",
+          "thickness": "4",
+          "dash": "10 5",
+          "lineJoin": "round"
+        }
+      }
+    },
+    {
+      "count_id": 8,
+      "from": 4,
+      "to": 6,
+      "name_from": "D",
+      "name_to": "F",
+      "distance": "2",
+      "valor_firme_padre": 7,
+      "valor_tmp": 9,
+      "valor_firme": 9,
+      "es_ruta": true,
+      "normal": {
+        "stroke": {
+          "color": "#ffa000",
+          "thickness": "2",
+          "dash": "10 5",
+          "lineJoin": "round"
+        }
+      },
+      "hovered": null,
+      "selected": {
+        "stroke": "4 #ffa000"
+      },
+      "hover": {
+        "stroke": {
+          "color": "#ffa000",
+          "thickness": "4",
+          "dash": "10 5",
+          "lineJoin": "round"
+        }
+      }
+    }
+  ]
+}

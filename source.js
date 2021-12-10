@@ -242,34 +242,3 @@ function listaTblNodos(NODOS) {
     }
     $("#tblNodos").html(template);
 }
-
-/*PROICESAMIENTO DE LOS NODOS*/
-
-function printResults(C, C0, it) {
-    console.log(C);
-    console.log(C0);
-    let template = $("#textAreaInfo").val();
-
-    template += `\nC${it}={`;
-    if (C.length > 0) {
-        C.forEach(
-            (nodo) => {
-                template += `${nodo.last_name},`;
-            }
-        );
-    } else {
-        template += "0";
-    }
-    template += `} y C0={`;
-    if (C0.length > 0) {
-        C0.forEach(
-            (nodo) => {
-                template += `${nodo.last_name},`;
-            }
-        );
-    } else {
-        template += "0";
-    }
-    template += "}";
-    $("#textAreaInfo").val(template);
-}
