@@ -19,7 +19,6 @@ function addNodo() {
             height: 30
         };
         DATA.nodes.push(newValue);
-        console.log(DATA);
         cargaGrafico(DATA);
         updateListas();
     } else {
@@ -27,12 +26,12 @@ function addNodo() {
     }
 }
 
-
+//actualizamos la listas desplegables
 function updateListas() {
     let template = '';
     DATA.nodes.forEach(
         obj => {
-            template += `<option value="${obj.id}">${obj.last_name}</option>`;
+            template += `<option selected value="${obj.id}">${obj.last_name}</option>`;
         }
     );
     //Selecciono el elemento donde voy a pintar el template
@@ -42,6 +41,7 @@ function updateListas() {
     //finNode
 }
 
+//Creamos un arco (enlace entre dos nodos)
 function addArco() {
     let from = $('#SelectFrom').val();
     let to = $('#SelectTo').val();
@@ -168,7 +168,6 @@ function selectedYes(params) {
     } : null;
 }
 
-
 ////////////// CREADORES HTML ///////////////
 function loadEnlaces(ENLACES) {
     let template = `<table class="table">
@@ -245,8 +244,6 @@ function listaTblNodos(NODOS) {
 }
 
 /*PROICESAMIENTO DE LOS NODOS*/
-
-
 
 function printResults(C, C0, it) {
     console.log(C);
